@@ -1,6 +1,6 @@
-#Setup:
+# Setup:
 
-## Mongo
+### Mongo
 
 * Import `game.json` into `boardgames` database as `games` collection
 ```
@@ -12,7 +12,7 @@ mongoimport "mongodb://localhost:27017" -d boardgames -c games --jsonArray --fil
 mongoimport "mongodb://localhost:27017" -d boardgames -c comments --jsonArray --file json/comment.json --drop
 ```
 
-## SQL
+### SQL
 
 * Import `bgg.sql`
 ```
@@ -32,15 +32,18 @@ db.comments.insertOne({
         });
 ```
 
+
 * Get max ID
 ```
 db.comments.find({}, {c_id: 1, _id: 0}).sort({c_id: -1}).limit(1);
 ```
 
+
 * `find` + `projection`
 ```
 db.games.find({gid: 5}).projection({_id: 0, name: 1, url: 1, image: 1, year:1});
 ```
+
 
 * `sort` + `limit` + `skip`
 ```

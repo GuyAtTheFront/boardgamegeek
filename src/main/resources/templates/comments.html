@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <span data-th-text = ${game}></span> -->
+    <!-- <span data-th-text = ${comments}></span> -->
+    <h1> GAME PAGE </h1>
+    <hr>
+    <div data-th-unless = ${game}>
+        <h2>Game does not exist</h2>
+    </div>
+
+    <div data-th-if = ${game}>
+        <!-- <h2> Game is not null </h2> -->
+        <!-- game details -->
+        <div>
+            <img src="#" data-th-src="${game.image}" width="150">
+            <a href="#" data-th-href="${game.url}">
+                <p data-th-text="${game.name} + ' (Year: ' + ${game.year} + ')'"></p>
+            </a>
+        </div>
+        
+        <!-- comment form -->
+        <div>
+            <h2>Add a Comment</h2>
+            <form method="POST" action="#" data-th-action="@{/games/{id}/submit (id=${id})}">
+                <p>Name: <input type="text" name="name"/></p>
+                <p>Rating: <input type="number" min="1" max="10" step="1" name="rating"/> </p>
+                <p>Comment: </p>
+                <p><textarea rows="10" cols="50" name="comment"></textarea> </p>
+                <input type="submit" value="submit"/>
+            </form>
+        </div>
+
+        <!-- Latest Comments -->
+        <div data-th-if="${comments}">
+            <h4> New Comments </h4>
+            <div data-th-each="comment : ${comments}">
+                <p><u><b><span data-th-text="${comment.user}"></span></b></u> said: </p>
+                <p><span data-th-text="${comment.commentText}"></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

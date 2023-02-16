@@ -14,9 +14,33 @@ mongoimport "mongodb://localhost:27017" -d boardgames -c comments --jsonArray --
 
 ### SQL
 
-* Import `bgg.sql`
+1. Login to SQL as root
 ```
-help me
+mysql -uroot -p
+// terminal will prompt you for password
+```
+
+2. Import `bgg.sql`
+```
+source sql/bgg.sql;
+```
+
+3. Verify database has been imported
+```
+show databases;
+```
+
+4. Grant user access to database
+```
+grant all privileges on bgg.* to <user>@'%';
+flush privileges;
+```
+
+5. Exit and test database with user
+```
+exit;
+mysql -u<user> -p
+use bgg;
 ```
 
 # Mongo Queries Used

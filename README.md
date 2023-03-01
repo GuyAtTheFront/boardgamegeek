@@ -7,16 +7,18 @@
 mongoimport "mongodb://localhost:27017" -d boardgames -c games --jsonArray --file json/game.json --drop
 ```
 
-For cloud, note the additional `--authenticationDatabase admin` portion:
-```
-mongoimport "<MONGO_CONNECTION_URL>" -d boardgames -c games --jsonArray --file json/game.json --drop --authenticationDatabase admin
-```
-
 * Import `comment.json` into `boardgames` database as `comments` collection
 ```
 mongoimport "mongodb://localhost:27017" -d boardgames -c comments --jsonArray --file json/comment.json --drop
 ```
 
+* For cloud, note the additional `--authenticationDatabase admin` portion:
+```
+mongoimport "<MONGO_CONNECTION_URL>" -d boardgames -c games --jsonArray --file json/game.json --drop --authenticationDatabase admin
+```
+```
+mongoimport "<MONGO_CONNECTION_URL>" -d boardgames -c comments --jsonArray --file json/comment.json --drop --authenticationDatabase admin
+```
 ### SQL
 
 1. Login to SQL as root
